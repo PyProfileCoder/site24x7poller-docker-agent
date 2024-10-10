@@ -27,7 +27,7 @@ jobs:
 
       - name: Build the push Docker image
         # uses: docker/build-push-action@v4
-        run: docker build . --file poller/Dockerfile --tag saikiranala4224/agent:$(date +%s) --push
+        run: docker build . --file ./poller/Dockerfile --tag saikiranala4224/agent:$(date +%s) --push
 
       - name: Build the push Docker image
         # uses: docker/build-push-action@v4
