@@ -3,13 +3,12 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
 
   build:
 
+    # It includes docker runtime
     runs-on: ubuntu-latest
 
     steps:
@@ -24,12 +23,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build the push Docker image
+          
+      - name: Build and push
         uses: docker/build-push-action@v4
-        run: docker build . --file poller/Dockerfile --tag saikiranala4224/agent:$(date +%s)
-
-      - name: Build the push Docker image
-        uses: docker/build-push-action@v4
-        run: docker build . --file basicpoller/Dockerfile --tag saikiranala4224/basicpoller:$(date +%s)
-
+        with:
+          push: true
+          tags: site24x7/poller_docker_agent:latest,site24x7/poller_docker_agent:5.7.3
