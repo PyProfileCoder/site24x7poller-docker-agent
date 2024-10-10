@@ -26,10 +26,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build the push Docker image
-        uses: docker/build-push-action@v4
-        run: docker build . --file poller/Dockerfile --tag saikiranala4224/agent:$(date +%s)
+        # uses: docker/build-push-action@v4
+        run: docker build . --file poller/Dockerfile --tag saikiranala4224/agent:$(date +%s) --push
 
       - name: Build the push Docker image
-        uses: docker/build-push-action@v4
-        run: docker build . --file basicpoller/Dockerfile --tag saikiranala4224/basicpoller:$(date +%s)
+        # uses: docker/build-push-action@v4
+        run: docker build . --file basicpoller/Dockerfile --tag saikiranala4224/basicpoller:$(date +%s) --push
 
